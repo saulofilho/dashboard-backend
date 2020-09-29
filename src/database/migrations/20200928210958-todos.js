@@ -1,18 +1,18 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('cash-flow', {
-      cash_id: {
+    return queryInterface.createTable('todos', {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      cash_in: {
-        type: Sequelize.DECIMAL,
+      todo_title: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
-      cash_out: {
-        type: Sequelize.DECIMAL,
+      todo_text: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
       created_at: {
@@ -27,6 +27,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    return queryInterface.dropTable('cahs-flow');
+    return queryInterface.dropTable('todos');
   },
 };

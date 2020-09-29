@@ -9,14 +9,14 @@ import Notification from '../schemas/Notification';
 import Cache from '../../lib/Cache';
 
 class CreateAppointmentService {
-  async run({ provider_id, user_id, date }) {
-    // check if provider_id is a provider
-    const checkIsProvider = await User.findOne({
-      where: { id: provider_id, provider: true },
+  async run({ admin_id, user_id, date }) {
+    // check if admin_id is a admin
+    const checkIsAdmin = await User.findOne({
+      where: { id: admin_id, admin: true },
     });
 
-    if (!checkIsProvider) {
-      throw new Error('You can only create appointments with providers.');
+    if (!checkIsAdmin) {
+      throw new Error('You can only create appointments with admins.');
     }
 
     // check for past dates
@@ -29,7 +29,7 @@ class CreateAppointmentService {
     // check date availability
     const checkAvailability = await Appointment.findOne({
       where: {
-        provider_id,
+        admin_id,
         canceled_at: null,
         date: hourStart,
       },
@@ -41,11 +41,11 @@ class CreateAppointmentService {
 
     const appointment = await Appointment.create({
       user_id,
-      provider_id,
+      admin_id,
       date,
     });
 
-    // notify appointment provider
+    // notify appointment admin
     const user = await User.findByPk(user_id);
     const formattedDate = format(hourStart, "'dia' dd 'de' MMM', às' H:mm'h'", {
       locale: pt,
@@ -53,7 +53,7 @@ class CreateAppointmentService {
 
     await Notification.create({
       content: `Novo agendamento de ${user.name} para ${formattedDate}`,
-      user: provider_id,
+      user: admin_id,
     });
 
     /**

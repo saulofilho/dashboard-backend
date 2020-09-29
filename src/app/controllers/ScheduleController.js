@@ -5,12 +5,12 @@ import Appointment from '../models/Appointment';
 
 class ScheduleController {
   async index(req, res) {
-    const checkUserProvider = await User.findOne({
-      where: { id: req.userId, provider: true },
+    const checkUserAdmin = await User.findOne({
+      where: { id: req.userId, admin: true },
     });
 
-    if (!checkUserProvider) {
-      return res.status(401).json({ error: 'User is not a provider.' });
+    if (!checkUserAdmin) {
+      return res.status(401).json({ error: 'User is not a admin.' });
     }
 
     const { date } = req.query;
@@ -18,7 +18,7 @@ class ScheduleController {
 
     const appointments = await Appointment.findAll({
       where: {
-        provider_id: req.userId,
+        admin_id: req.userId,
         canceled_at: null,
         date: {
           [Op.between]: [startOfDay(parsedDate), endOfDay(parsedDate)],

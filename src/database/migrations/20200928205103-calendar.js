@@ -1,25 +1,26 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('cash-flow', {
-      cash_id: {
+    return queryInterface.createTable('calendar', {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      cash_in: {
-        type: Sequelize.DECIMAL,
+      title: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
-      cash_out: {
-        type: Sequelize.DECIMAL,
+      allDay: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
         allowNull: true,
       },
-      created_at: {
+      start: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      end: {
         type: Sequelize.DATE,
         allowNull: false,
       },
@@ -27,6 +28,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    return queryInterface.dropTable('cahs-flow');
+    return queryInterface.dropTable('calendar');
   },
 };

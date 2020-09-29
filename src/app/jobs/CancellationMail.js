@@ -13,11 +13,11 @@ class CancellationMail {
     console.log('Queue online.');
 
     await Mail.sendMail({
-      to: `${appointment.provider.name} <${appointment.provider.email}>`,
+      to: `${appointment.admin.name} <${appointment.admin.email}>`,
       subject: 'Agendamento cancelado.',
       template: 'cancellation',
       context: {
-        provider: appointment.provider.name,
+        admin: appointment.admin.name,
         user: appointment.user.name,
         date: format(
           parseISO(appointment.date),

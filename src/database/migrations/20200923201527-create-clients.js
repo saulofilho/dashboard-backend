@@ -1,48 +1,48 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('clients', {
-      id: {
+      client_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      client_name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      lastName: {
+      client_last_name: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      email: {
+      client_email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      password_hash: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      client_telephone: {
+        type: Sequelize.DECIMAL,
+        allowNull: true,
       },
-      telephone: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+      client_cellphone: {
+        type: Sequelize.DECIMAL,
+        allowNull: true,
       },
-      address: {
+      client_address: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
-      city: {
+      client_city: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      uf: {
+      client_uf: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      companyName: {
+      client_company_name: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,

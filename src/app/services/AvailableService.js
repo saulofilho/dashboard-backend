@@ -12,10 +12,10 @@ import {
 import Appointment from '../models/Appointment';
 
 class AvailableService {
-  async run({ date, provider_id }) {
+  async run({ date, admin_id }) {
     const appointments = await Appointment.findAll({
       where: {
-        provider_id,
+        admin_id,
         canceled_at: null,
         date: {
           [Op.between]: [startOfDay(date), endOfDay(date)],
@@ -39,7 +39,7 @@ class AvailableService {
       '20:00',
     ];
 
-    const available = schedule.map(time => {
+    const available = schedule.map((time) => {
       const [hour, minute] = time.split(':');
       const value = setSeconds(setMinutes(setHours(date, hour), minute), 0);
 
@@ -48,7 +48,7 @@ class AvailableService {
         value: format(value, "yyyy-MM-dd'T'HH:mm:ssxxx"),
         available:
           isAfter(value, new Date()) &&
-          !appointments.find(a => format(a.date, 'HH:mm') === time),
+          !appointments.find((a) => format(a.date, 'HH:mm') === time),
       };
     });
 

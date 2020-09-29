@@ -3,16 +3,16 @@ import File from '../models/File';
 
 import Cache from '../../lib/Cache';
 
-class ProviderController {
+class AdminController {
   async index(req, res) {
-    const cached = await Cache.get('providers');
+    const cached = await Cache.get('admins');
 
     if (cached) {
       return res.json(cached);
     }
 
-    const providers = await User.findAll({
-      where: { provider: true },
+    const admins = await User.findAll({
+      where: { admin: true },
       attributes: ['id', 'name', 'avatar_id', 'email'],
       include: [
         {
@@ -23,10 +23,10 @@ class ProviderController {
       ],
     });
 
-    await Cache.set('providers', providers);
+    await Cache.set('admins', admins);
 
-    return res.json(providers);
+    return res.json(admins);
   }
 }
 
-export default new ProviderController();
+export default new AdminController();

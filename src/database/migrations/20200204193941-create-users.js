@@ -11,6 +11,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      last_name: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -20,9 +24,29 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      provider: {
+      address: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      telephone: {
+        type: Sequelize.DECIMAL,
+        allowNull: true,
+      },
+      cellphone: {
+        type: Sequelize.DECIMAL,
+        allowNull: true,
+      },
+      social: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      company: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      admin: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false,
+        defaultValue: true,
         allowNull: false,
       },
       created_at: {

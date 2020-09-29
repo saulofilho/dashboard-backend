@@ -9,12 +9,12 @@ import Cache from '../../lib/Cache';
 import CancellationMail from '../jobs/CancellationMail';
 
 class CancelAppointmentService {
-  async run({ provider_id, user_id }) {
-    const appointment = await Appointment.findByPk(provider_id, {
+  async run({ admin_id, user_id }) {
+    const appointment = await Appointment.findByPk(admin_id, {
       include: [
         {
           model: User,
-          as: 'provider',
+          as: 'admin',
           attributes: ['name', 'email'],
         },
         {

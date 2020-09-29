@@ -1,38 +1,29 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('products', {
-      product_id: {
+    return queryInterface.createTable('bills-to-pay', {
+      bills_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      product_name: {
+      provider_name: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      product_info: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      product_department: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      product_color: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      product_material: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      product_price: {
+      invoice_number: {
         type: Sequelize.DECIMAL,
         allowNull: true,
       },
-      product_stock: {
+      amount: {
+        type: Sequelize.DECIMAL,
+        allowNull: true,
+      },
+      product_id: {
         type: Sequelize.INTEGER,
+        references: { model: 'products', key: 'product_id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
         allowNull: true,
       },
       created_at: {
@@ -47,6 +38,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    return queryInterface.dropTable('products');
+    return queryInterface.dropTable('bills-to-pay');
   },
 };

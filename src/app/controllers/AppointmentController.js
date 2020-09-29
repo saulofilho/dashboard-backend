@@ -27,7 +27,7 @@ class AppointmentController {
       include: [
         {
           model: User,
-          as: 'provider',
+          as: 'admin',
           attributes: ['id', 'name'],
           include: [
             {
@@ -46,10 +46,10 @@ class AppointmentController {
   }
 
   async store(req, res) {
-    const { provider_id, date } = req.body;
+    const { admin_id, date } = req.body;
 
     const appointment = await CreateAppointmentService.run({
-      provider_id,
+      admin_id,
       user_id: req.userId,
       date,
     });
@@ -59,7 +59,7 @@ class AppointmentController {
 
   async delete(req, res) {
     const appointment = await CancelAppointmentService.run({
-      provider_id: req.params.id,
+      admin_id: req.params.id,
       user_id: req.userId,
     });
 
