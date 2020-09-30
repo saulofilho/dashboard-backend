@@ -1,18 +1,11 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('bills-to-receive', {
-      bills_id: {
+    return queryInterface.createTable('bills_to_receives', {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-      },
-      client_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'clients', key: 'client_id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        allowNull: true,
       },
       invoice_number: {
         type: Sequelize.DECIMAL,
@@ -21,6 +14,10 @@ module.exports = {
       amount: {
         type: Sequelize.DECIMAL,
         allowNull: true,
+      },
+      due_date: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       payment: {
         type: Sequelize.STRING,
@@ -38,6 +35,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    return queryInterface.dropTable('bills-to-receive');
+    return queryInterface.dropTable('bills_to_receives');
   },
 };

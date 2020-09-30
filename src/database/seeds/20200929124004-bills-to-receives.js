@@ -1,19 +1,21 @@
 module.exports = {
   up: async (queryInterface) => {
     await queryInterface.bulkInsert(
-      'bills-to-pay',
+      'bills_to_receives',
       [
         {
-          provider_name: 'rodolfo fornecedor',
-          invoice_number: 1312312312,
-          amount: 25.99,
+          invoice_number: 332233,
+          amount: 1.99,
+          due_date: new Date(),
+          payment: 'visa',
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          provider_name: 'saulo representacoes',
-          invoice_number: 123123112,
+          invoice_number: 222,
           amount: 9.99,
+          due_date: new Date(),
+          payment: 'master card',
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -23,6 +25,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete('bills-to-pay', null, {});
+    await queryInterface.bulkDelete('bills_to_receives', null, {});
   },
 };

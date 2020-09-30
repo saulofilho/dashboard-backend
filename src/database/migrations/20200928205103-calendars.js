@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('calendar', {
+    return queryInterface.createTable('calendars', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      allDay: {
+      all_day: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
         allowNull: true,
@@ -24,10 +24,18 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
     });
   },
 
   down: async (queryInterface) => {
-    return queryInterface.dropTable('calendar');
+    return queryInterface.dropTable('calendars');
   },
 };
