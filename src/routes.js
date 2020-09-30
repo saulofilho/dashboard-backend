@@ -33,26 +33,21 @@ import validateTodoDelete from './app/validators/TodoDelete';
 import validateCalendarStore from './app/validators/CalendarStore';
 import validateCalendarUpdate from './app/validators/CalendarUpdate';
 import validateCalendarDelete from './app/validators/CalendarDelete';
-
-// import validateClientStore from './app/validators/ClientStore';
-// import validateClientUpdate from './app/validators/ClientUpdate';
-// import validateClientDelete from './app/validators/ClientDelete';
-
-// import validateTodoStore from './app/validators/TodoStore';
-// import validateTodoUpdate from './app/validators/TodoUpdate';
-// import validateTodoDelete from './app/validators/TodoDelete';
-
-// import validateTodoStore from './app/validators/TodoStore';
-// import validateTodoUpdate from './app/validators/TodoUpdate';
-// import validateTodoDelete from './app/validators/TodoDelete';
-
-// import validateTodoStore from './app/validators/TodoStore';
-// import validateTodoUpdate from './app/validators/TodoUpdate';
-// import validateTodoDelete from './app/validators/TodoDelete';
-
-// import validateTodoStore from './app/validators/TodoStore';
-// import validateTodoUpdate from './app/validators/TodoUpdate';
-// import validateTodoDelete from './app/validators/TodoDelete';
+import validateClientStore from './app/validators/ClientStore';
+import validateClientUpdate from './app/validators/ClientUpdate';
+import validateClientDelete from './app/validators/ClientDelete';
+import validateBillsToReceiveStore from './app/validators/BillsToReceiveStore';
+import validateBillsToReceiveUpdate from './app/validators/BillsToReceiveUpdate';
+import validateBillsToReceiveDelete from './app/validators/BillsToReceiveDelete';
+import validateBillsToPayStore from './app/validators/BillsToPayStore';
+import validateBillsToPayUpdate from './app/validators/BillsToPayUpdate';
+import validateBillsToPayDelete from './app/validators/BillsToPayDelete';
+import validateProductStore from './app/validators/ProductStore';
+import validateProductUpdate from './app/validators/ProductUpdate';
+import validateProductDelete from './app/validators/ProductDelete';
+import validateCashFlowStore from './app/validators/CashFlowStore';
+import validateCashFlowUpdate from './app/validators/CashFlowUpdate';
+import validateCashFlowDelete from './app/validators/CashFlowDelete';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -120,32 +115,52 @@ routes.delete(
 
 // clients
 routes.get('/clients', ClientController.index);
-// routes.post('/clients', validateTodoStore, TodoController.store);
-// routes.put('/clients/:id', validateTodoUpdate, TodoController.update);
-// routes.delete('/clients/:id', validateTodoDelete, TodoController.delete);
+routes.post('/clients', validateClientStore, ClientController.store);
+routes.put('/clients/:id', validateClientUpdate, ClientController.update);
+routes.delete('/clients/:id', validateClientDelete, ClientController.delete);
 
 // receive
 routes.get('/receive', BillsToReceiveController.index);
-// routes.post('/receive', validateTodoStore, TodoController.store);
-// routes.put('/receive/:id', validateTodoUpdate, TodoController.update);
-// routes.delete('/receive/:id', validateTodoDelete, TodoController.delete);
+routes.post(
+  '/receive',
+  validateBillsToReceiveStore,
+  BillsToReceiveController.store
+);
+routes.put(
+  '/receive/:id',
+  validateBillsToReceiveUpdate,
+  BillsToReceiveController.update
+);
+routes.delete(
+  '/receive/:id',
+  validateBillsToReceiveDelete,
+  BillsToReceiveController.delete
+);
 
 // pay
 routes.get('/pay', BillsToPayController.index);
-// routes.post('/pay', validateTodoStore, TodoController.store);
-// routes.put('/pay/:id', validateTodoUpdate, TodoController.update);
-// routes.delete('/pay/:id', validateTodoDelete, TodoController.delete);
+routes.post('/pay', validateBillsToPayStore, BillsToPayController.store);
+routes.put('/pay/:id', validateBillsToPayUpdate, BillsToPayController.update);
+routes.delete(
+  '/pay/:id',
+  validateBillsToPayDelete,
+  BillsToPayController.delete
+);
 
 // products
 routes.get('/products', ProductController.index);
-// routes.post('/products', validateTodoStore, TodoController.store);
-// routes.put('/products/:id', validateTodoUpdate, TodoController.update);
-// routes.delete('/products/:id', validateTodoDelete, TodoController.delete);
+routes.post('/products', validateProductStore, ProductController.store);
+routes.put('/products/:id', validateProductUpdate, ProductController.update);
+routes.delete('/products/:id', validateProductDelete, ProductController.delete);
 
 // cashflow
 routes.get('/cashflow', CashFlowController.index);
-// routes.post('/cashflow', validateTodoStore, TodoController.store);
-// routes.put('/cashflow/:id', validateTodoUpdate, TodoController.update);
-// routes.delete('/cashflow/:id', validateTodoDelete, TodoController.delete);
+routes.post('/cashflow', validateCashFlowStore, CashFlowController.store);
+routes.put('/cashflow/:id', validateCashFlowUpdate, CashFlowController.update);
+routes.delete(
+  '/cashflow/:id',
+  validateCashFlowDelete,
+  CashFlowController.delete
+);
 
 export default routes;

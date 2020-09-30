@@ -9,13 +9,13 @@ class BillsToReceiveController {
 
   async store(req, res) {
     const {
-      client_id,
+      due_date,
       invoice_number,
       amount,
       payment,
     } = await BillsToReceive.create(req.body);
 
-    return res.json({ client_id, invoice_number, amount, payment });
+    return res.json({ due_date, invoice_number, amount, payment });
   }
 
   async update(req, res) {
