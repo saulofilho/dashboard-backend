@@ -9,7 +9,7 @@ import {
   isAfter,
 } from 'date-fns';
 
-import Appointment from '../models/Appointment';
+import Appointment from '../models/Reminder';
 
 class AvailableService {
   async run({ date, admin_id }) {

@@ -21,6 +21,7 @@ class UserController {
       cellphone,
       social,
       company,
+      avatar_id,
     } = await User.create(req.body);
 
     if (admin) {
@@ -36,6 +37,7 @@ class UserController {
       cellphone,
       social,
       company,
+      avatar_id,
       admin,
     });
   }

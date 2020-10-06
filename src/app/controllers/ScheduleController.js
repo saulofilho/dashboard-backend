@@ -1,7 +1,7 @@
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
 import { Op } from 'sequelize';
 import User from '../models/User';
-import Appointment from '../models/Appointment';
+import Reminder from '../models/Reminder';
 
 class ScheduleController {
   async index(req, res) {
@@ -16,7 +16,7 @@ class ScheduleController {
     const { date } = req.query;
     const parsedDate = parseISO(date);
 
-    const appointments = await Appointment.findAll({
+    const reminders = await Reminder.findAll({
       where: {
         admin_id: req.userId,
         canceled_at: null,
@@ -34,7 +34,7 @@ class ScheduleController {
       order: ['date'],
     });
 
-    return res.json(appointments);
+    return res.json(reminders);
   }
 }
 

@@ -9,13 +9,13 @@ import BillsToPay from '../app/models/BillsToPay';
 import BillsToReceive from '../app/models/BillsToReceive';
 import Calendar from '../app/models/Calendar';
 import Todo from '../app/models/Todo';
-import Appointment from '../app/models/Appointment';
+import Reminder from '../app/models/Reminder';
 import databaseConfig from '../config/database';
 
 const models = [
   User,
   File,
-  Appointment,
+  Reminder,
   Client,
   Product,
   CashFlow,

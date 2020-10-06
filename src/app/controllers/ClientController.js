@@ -2,9 +2,9 @@ import Client from '../models/Client';
 
 class ClientController {
   async index(req, res) {
-    const allClient = await Client.findAll();
+    const allClients = await Client.findAll();
 
-    return res.json(allClient);
+    return res.json(allClients);
   }
 
   async store(req, res) {

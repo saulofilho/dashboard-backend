@@ -10,7 +10,7 @@ import SessionController from './app/controllers/SessionController';
 import authMiddleware from './app/middleware/auth';
 import FileController from './app/controllers/FileController';
 import AdminController from './app/controllers/AdminController';
-import AppointmentController from './app/controllers/AppointmentController';
+import ReminderController from './app/controllers/ReminderController';
 import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 import AvailableController from './app/controllers/AvailableController';
@@ -26,7 +26,7 @@ import CashFlowController from './app/controllers/CashFlowController';
 import validateUserStore from './app/validators/UserStore';
 import validateUserUpdate from './app/validators/UserUpdate';
 import validateSessionStore from './app/validators/SessionStore';
-import validateAppointmentStore from './app/validators/AppointmentStore';
+import validateReminderStore from './app/validators/ReminderStore';
 import validateTodoStore from './app/validators/TodoStore';
 import validateTodoUpdate from './app/validators/TodoUpdate';
 import validateTodoDelete from './app/validators/TodoDelete';
@@ -78,14 +78,10 @@ routes.put('/users', validateUserUpdate, UserController.update);
 routes.get('/admins', AdminController.index);
 routes.get('/admins/:adminId/available', AvailableController.index);
 
-// appointments
-routes.get('/appointments', AppointmentController.index);
-routes.post(
-  '/appointments',
-  validateAppointmentStore,
-  AppointmentController.store
-);
-routes.delete('/appointments/:id', AppointmentController.delete);
+// reminders
+routes.get('/reminders', ReminderController.index);
+routes.post('/reminders', validateReminderStore, ReminderController.store);
+routes.delete('/reminders/:id', ReminderController.delete);
 
 // schedule
 routes.get('/schedule', ScheduleController.index);
