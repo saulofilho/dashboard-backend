@@ -25,6 +25,28 @@ module.exports = {
           created_at: new Date(),
           updated_at: new Date(),
         },
+        {
+          product_name: 'carro',
+          product_info: 'rolex dourado',
+          product_department: 'vestuario',
+          product_color: 'dourado',
+          product_material: 'ferro',
+          product_price: 9.99,
+          product_stock: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          product_name: 'xxx',
+          product_info: 'rolex dourado',
+          product_department: 'vestuario',
+          product_color: 'dourado',
+          product_material: 'ferro',
+          product_price: 9.99,
+          product_stock: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
       ],
       {}
     );

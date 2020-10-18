@@ -6,6 +6,7 @@ class Todo extends Model {
       {
         todo_title: Sequelize.STRING,
         todo_text: Sequelize.STRING,
+        todo_done: Sequelize.BOOLEAN,
       },
       {
         sequelize,

@@ -8,9 +8,9 @@ class TodoController {
   }
 
   async store(req, res) {
-    const { todo_title, todo_text } = await Todo.create(req.body);
+    const { todo_title, todo_text, todo_done } = await Todo.create(req.body);
 
-    return res.json({ todo_title, todo_text });
+    return res.json({ todo_title, todo_text, todo_done });
   }
 
   async update(req, res) {
