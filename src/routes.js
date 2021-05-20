@@ -1,6 +1,4 @@
 import { Router } from 'express';
-import Brute from 'express-brute';
-import BruteRedis from 'express-brute-redis';
 import multer from 'multer';
 import multerConfig from './config/multer';
 
@@ -10,10 +8,7 @@ import SessionController from './app/controllers/SessionController';
 import authMiddleware from './app/middleware/auth';
 import FileController from './app/controllers/FileController';
 import AdminController from './app/controllers/AdminController';
-import ReminderController from './app/controllers/ReminderController';
 import ScheduleController from './app/controllers/ScheduleController';
-import NotificationController from './app/controllers/NotificationController';
-import AvailableController from './app/controllers/AvailableController';
 import TodoController from './app/controllers/TodoController';
 import CalendarController from './app/controllers/CalendarController';
 import ClientController from './app/controllers/ClientController';
@@ -26,7 +21,6 @@ import CashFlowController from './app/controllers/CashFlowController';
 import validateUserStore from './app/validators/UserStore';
 import validateUserUpdate from './app/validators/UserUpdate';
 import validateSessionStore from './app/validators/SessionStore';
-import validateReminderStore from './app/validators/ReminderStore';
 import validateTodoStore from './app/validators/TodoStore';
 import validateTodoUpdate from './app/validators/TodoUpdate';
 import validateTodoDelete from './app/validators/TodoDelete';
@@ -52,21 +46,9 @@ import validateCashFlowDelete from './app/validators/CashFlowDelete';
 const routes = new Router();
 const upload = multer(multerConfig);
 
-const bruteStore = new BruteRedis({
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
-});
-
-const bruteForce = new Brute(bruteStore);
-
 // users
 routes.post('/users', validateUserStore, UserController.store);
-routes.post(
-  '/sessions',
-  bruteForce.prevent,
-  validateSessionStore,
-  SessionController.store
-);
+routes.post('/sessions', validateSessionStore, SessionController.store);
 
 routes.get('/', (req, res) => res.send('ok'));
 
@@ -76,19 +58,9 @@ routes.put('/users', validateUserUpdate, UserController.update);
 
 // admins
 routes.get('/admins', AdminController.index);
-routes.get('/admins/:adminId/available', AvailableController.index);
-
-// reminders
-routes.get('/reminders', ReminderController.index);
-routes.post('/reminders', validateReminderStore, ReminderController.store);
-routes.delete('/reminders/:id', ReminderController.delete);
 
 // schedule
 routes.get('/schedule', ScheduleController.index);
-
-// notifications
-routes.get('/notifications', NotificationController.index);
-routes.put('/notifications/:id', NotificationController.update);
 
 // flies
 routes.post('/files', upload.single('file'), FileController.store);
